@@ -1,6 +1,8 @@
 const initialState = {
-  counterValue: 4,
-  counterName: 'First counter'
+  counterData: {
+    name: 'First counter',
+    value: 1
+  }
 };
 
 function counter(state = initialState, action) {
@@ -8,12 +10,18 @@ function counter(state = initialState, action) {
     case 'COUNTER_PLUS':
       return {
         ...state,
-        counterValue: state.counterValue + 1
+        counterData: {
+          ...state.counterData,
+          value: state.counterData.value + 1
+        }
       };
     case 'COUNTER_MINUS':
       return {
         ...state,
-        counterValue: state.counterValue - 1
+        counterData: {
+          ...state.counterData,
+          value: state.counterData.value - 1
+        }
       };
     default:
       return state;

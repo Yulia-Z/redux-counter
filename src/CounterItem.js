@@ -1,16 +1,22 @@
 import React from 'react';
 import './App.css';
+import {connect} from "react-redux";
 
-function CounterItem() {
+function CounterItem(props) {
   return (
     <div>
       Counter name
       <button>-</button>
-      Value
+      {props.counter.value}
       <button>+</button>
       <button>DELETE</button>
     </div>
   );
 }
 
-export default CounterItem;
+const mapStateToProps = state => ({
+  counter: state.counterData
+});
+
+
+export default connect(mapStateToProps)(CounterItem);
