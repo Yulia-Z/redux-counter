@@ -17,7 +17,7 @@ function TotalCounter(props) {
   );
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   reset: () => dispatch(resetTotalCount())
 });
 

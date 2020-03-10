@@ -1,7 +1,5 @@
 import React from 'react';
 import './App.css';
-import {connect} from "react-redux";
-import { counterPlus, counterMinus} from "./actions";
 
 function CounterItem(props) {
 
@@ -13,11 +11,11 @@ function CounterItem(props) {
             {props.counter.name}
           </div>
           <div className="col">
-            <button className='btn btn-outline-secondary' onClick={() => props.counterMinus(props.counter.id)}>-</button>
+            <button className='btn btn-outline-secondary' onClick={props.decrement}>-</button>
             <span className='ml-2 mr-2'>
               {props.counter.value}
             </span>
-            <button className='btn btn-outline-secondary' onClick={() => props.counterPlus(props.counter.id)}>+</button>
+            <button className='btn btn-outline-secondary' onClick={props.increment}>+</button>
           </div>
           <div className="col">
             <button className='btn btn-danger'>DELETE</button>
@@ -28,11 +26,4 @@ function CounterItem(props) {
   );
 }
 
-
-
-const mapDispatchToProps = dispatch => ({
-  counterPlus: (id) => dispatch(counterPlus(id)),
-  counterMinus: (id) => dispatch(counterMinus(id))
-});
-
-export default connect(null, mapDispatchToProps)(CounterItem);
+export default CounterItem;

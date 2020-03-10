@@ -35,6 +35,11 @@ function counter(state = initialState, action) {
         counters: state.counters
             .map(counter => ({...counter, value: 0}))
       };
+    case 'ADD_COUNTER':
+      return {
+        ...state,
+        counters: [...state.counters, action.payload]
+      };
     default:
       return state;
   }
