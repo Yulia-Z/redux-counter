@@ -1,13 +1,20 @@
 import React from 'react';
 import './App.css';
-import CounterItem from "./CounterItem";
+import {connect} from "react-redux";
+import TotalCounter from "./TotalCounter";
+import CounterList from "./CounterList";
 
-function App() {
+function App(props) {
+
   return (
     <div className="App">
-      <CounterItem/>
+      <TotalCounter counters={props.counters}/>
+      <CounterList counters={props.counters}/>
     </div>
   );
 }
+const mapStateToProps = state => ({
+  counters: state.counters
+});
 
-export default App;
+export default connect(mapStateToProps)(App);

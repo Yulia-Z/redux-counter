@@ -1,8 +1,16 @@
 const initialState = {
-  counterData: {
-    name: 'First counter',
-    value: 1
-  }
+  counters: [
+    {
+      id: 123,
+      name: 'First counter',
+      value: 1
+    },
+    {
+      id: 234,
+      name: 'Second counter',
+      value: 1
+    }
+  ]
 };
 
 function counter(state = initialState, action) {
@@ -10,18 +18,22 @@ function counter(state = initialState, action) {
     case 'COUNTER_PLUS':
       return {
         ...state,
-        counterData: {
-          ...state.counterData,
-          value: state.counterData.value + 1
-        }
+        counters: state.counters
+            .map(counter => counter.id === action.payload
+                ? {...counter, value: counter.value + 1} : counter)
       };
     case 'COUNTER_MINUS':
       return {
         ...state,
-        counterData: {
-          ...state.counterData,
-          value: state.counterData.value - 1
-        }
+        counters: state.counters
+            .map(counter => counter.id === action.payload
+                ? {...counter, value: counter.value - 1} : counter)
+      };
+    case 'RESET_TOTAL_COUNT':
+      return {
+        ...state,
+        counters: state.counters
+            .map(counter => ({...counter, value: 0}))
       };
     default:
       return state;
