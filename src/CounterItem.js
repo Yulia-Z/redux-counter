@@ -18,7 +18,11 @@ function CounterItem(props) {
             <button className='btn btn-outline-secondary' onClick={props.increment}>+</button>
           </div>
           <div className="col">
-            <button className='btn btn-danger'>DELETE</button>
+            <button className='btn btn-outline-secondary mr-2'
+                    onClick={props.reset}><i className="fas fa-sync-alt"/></button>
+            <button className='btn btn-outline-primary mr-2'><i className="fas fa-edit"/></button>
+            <button className='btn btn-outline-danger'
+                    onClick={props.deleteConfirmation}><i className="fas fa-trash-alt"/></button>
           </div>
         </div>
       </div>

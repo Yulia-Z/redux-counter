@@ -10,7 +10,8 @@ const initialState = {
       name: 'Second counter',
       value: 1
     }
-  ]
+  ],
+  counterDeleteConfirmation: {}
 };
 
 function counter(state = initialState, action) {
@@ -29,7 +30,7 @@ function counter(state = initialState, action) {
             .map(counter => counter.id === action.payload
                 ? {...counter, value: counter.value - 1} : counter)
       };
-    case 'RESET_TOTAL_COUNT':
+    case 'RESET_ALL':
       return {
         ...state,
         counters: state.counters
@@ -39,6 +40,18 @@ function counter(state = initialState, action) {
       return {
         ...state,
         counters: [...state.counters, action.payload]
+      };
+    case 'RESET_COUNTER':
+      return {
+        ...state,
+        counters: state.counters
+            .map(counter => counter.id === action.payload
+                ? {...counter, value: 0} : counter)
+      };
+    case 'DELETE_CONFIRMATION':
+      return {
+        ...state,
+        counterDeleteConfirmation: state.counters.filter(counter => counter.id === action.payload)[0]
       };
     default:
       return state;

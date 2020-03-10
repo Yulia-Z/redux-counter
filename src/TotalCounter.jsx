@@ -1,24 +1,32 @@
 import React from 'react';
 import './App.css';
-import {resetTotalCount} from "./actions";
+import {resetAll} from "./redux/actions";
 import {connect} from "react-redux";
 
 function TotalCounter(props) {
 
   const total = props.counters.reduce((acc, cur) => acc + cur.value, 0);
   return (
-    <div className='card'>
+    <div className='card mb-2'>
       <div className="card-body">
-        <h4 className='d-inline-block'>Total</h4>
-        <h5 className='d-inline-block ml-3 mr-5'>{total}</h5>
-        <button onClick={() => props.reset()} className='btn btn-warning'>Reset total count</button>
+        <div className="row">
+          <div className="col">
+            <h4 className='d-inline-block'>Total</h4>
+          </div>
+          <div className="col">
+            <h5 className='d-inline-block'>{total}</h5>
+          </div>
+          <div className="col">
+            <button onClick={() => props.reset()} className='btn btn-warning'>Reset All</button>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  reset: () => dispatch(resetTotalCount())
+  reset: () => dispatch(resetAll())
 });
 
 export default connect(null, mapDispatchToProps)(TotalCounter);
