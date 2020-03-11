@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import './App.css';
 import {connect} from "react-redux";
-import {addCounter} from "./redux/actions";
+import {addCounter} from "../redux/actions";
 import faker from 'faker';
+import BadDataInformation from "./BadDataInformation";
 
 function AddCounterForm(props) {
 
   const [name, setName] = useState('');
   const [value, setValue] = useState('');
+  const [isBadData, setIsBadData] = useState(false);
 
   const onSubmit = () => {
     if (!name || isNaN(+value)) {
-      alert('Please check your data! Counter name should not be empty, counter initial value should be a number')
+      setIsBadData(true)
     }
     else {
       props.addCounter({name, value: +value, id: faker.random.uuid()});
@@ -24,7 +26,7 @@ function AddCounterForm(props) {
       <div className='card mb-2'>
         <div className="card-body">
           <div className='row'>
-            <div className="col">
+            <div className="col text-center">
               <input type="text"
                      name='name'
                      value={name}
@@ -33,7 +35,7 @@ function AddCounterForm(props) {
                      placeholder='counter name'
               />
             </div>
-            <div className="col">
+            <div className="col text-center">
               <input type="text"
                      name='value'
                      value={value}
@@ -41,8 +43,9 @@ function AddCounterForm(props) {
                      className='form-control' placeholder='counter initial value'
               />
             </div>
-            <div className="col">
+            <div className="col text-center">
               <button onClick={() => onSubmit()} className='btn btn-outline-secondary'>Add counter</button>
+              <BadDataInformation isOpen={isBadData} onSubmit={() => setIsBadData(false)}/>
             </div>
           </div>
         </div>

@@ -18,6 +18,18 @@ export function resetCounter(id) {
   return {type: 'RESET_COUNTER', payload: id};
 }
 
-export default function deleteConfirmation(id) {
+export function deleteConfirmation(id) {
   return {type: 'DELETE_CONFIRMATION', payload: id};
+}
+
+export function counterDelete(id) {
+  return {type: 'COUNTER_DELETE', payload: id};
+}
+
+export function resetCounterDeleteConfirmation() {
+  return {type: 'RESET_COUNTER_DELETE_CONFIRMATION'};
+}
+
+export function saveModifiedCounter(id, newName) {
+  return {type: 'SAVE_MODIFIED_COUNTER', payload: {id, newName}};
 }

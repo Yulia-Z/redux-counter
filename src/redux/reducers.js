@@ -53,6 +53,22 @@ function counter(state = initialState, action) {
         ...state,
         counterDeleteConfirmation: state.counters.filter(counter => counter.id === action.payload)[0]
       };
+    case 'COUNTER_DELETE':
+      return {
+        ...state,
+        counters: state.counters.filter(counter => counter.id !== action.payload)
+      };
+    case 'RESET_COUNTER_DELETE_CONFIRMATION':
+      return {
+        ...state,
+        counterDeleteConfirmation: {}
+      };
+    case 'SAVE_MODIFIED_COUNTER':
+      return {
+        ...state,
+        counters: state.counters.map(counter => counter.id === action.payload.id
+            ? {...counter, name: action.payload.newName} : counter)
+      };
     default:
       return state;
   }
